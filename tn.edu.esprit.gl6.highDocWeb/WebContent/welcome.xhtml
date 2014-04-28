@@ -1,0 +1,21 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets" 
+	template="/template/template.xhtml">
+	<ui:define name="pageTitle"> Login Page</ui:define>
+	<ui:define name="pageContent">
+	<h1>
+		<center>Welcome to all</center>
+		<h:form>
+			<h:panelGrid columns="2">
+				<h:outputLabel value="login" />
+				<h:inputText value="#{mrBean.user.login}" />
+				<h:outputLabel  value="password" />
+				<h:inputSecret value="#{mrBean.user.password}" />
+				<h:commandButton action="#{mrBean.doLogin()}" value="ok" />
+			</h:panelGrid>
+		</h:form>
+	</h1>
+	</ui:define>
+</ui:composition>

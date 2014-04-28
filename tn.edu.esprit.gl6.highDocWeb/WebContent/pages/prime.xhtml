@@ -1,0 +1,66 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui" template="/template/template.xhtml">
+
+	<ui:define name="pageTitle"> prime page</ui:define>
+	<ui:define name="pageContent">
+		<p:panel header="validation" id="panel1">
+			<h:form id="form1">
+				<p:panelGrid columns="3" id="panelG1">
+					<p:outputLabel value="Name" id="out1" />
+					<p:inputText value="#{userManagementBean.patient.name}" id="in1"
+						required="true" requiredMessage="Veuillez remplir le champ" />
+
+					<p:message id="message1" for="in1" />
+					<p:outputLabel value="Folder Reference" id="out2"></p:outputLabel>
+					<p:inputText value="#{userManagementBean.patient.folderRef}"
+						id="in2" required="true"
+						requiredMessage="Veuillez remplir le champ"
+						validatorMessage="Veuillez donner une longeur entre 4 et 6 caractères">
+						<f:validateLength minimum="4" maximum="6"></f:validateLength>
+					</p:inputText>
+					<p:message id="message2" for="in2" />
+					<p:outputLabel value="Age" id="out3"></p:outputLabel>
+					<p:inputText value="#{userManagementBean.patient.age}" id="in3"
+						required="true" requiredMessage="Veuillez remplir le champ"
+						validatorMessage="Veuillez donner un age entre 1 et 100">
+						<f:validateLongRange minimum="1" maximum="100">
+						</f:validateLongRange>
+					</p:inputText>
+					<p:message id="message3" for="in3" />
+					<p:outputLabel value="Name" id="out4"></p:outputLabel>
+					<p:inputText value="#{userManagementBean.patient.name}" id="in4"
+						required="true" requiredMessage="veuillez remplir le champ"
+						validatorMessage="Veuillez entrer un nom entre 3 et 7 lettres">
+						<f:ajax event="blur" render="message4"></f:ajax>
+						<f:validateLength minimum="3" maximum="7"></f:validateLength>
+
+					</p:inputText>
+					<p:message id="message4" for="in4" />
+
+					<p:outputLabel value="name" id="out5"></p:outputLabel>
+					<p:inputText value="#{userManagementBean.patient.name}" id="in5"
+						required="true" requiredMessage="veuillez remplir le champ">
+						<f:ajax event="keyup" render="message5">
+						</f:ajax>
+						<f:validateRegex pattern="[P]_[a-z*]*"></f:validateRegex>
+					</p:inputText>
+					<p:message id="message5" for="in5" />
+
+					<p:outputLabel value="MAIL" id="out6"></p:outputLabel>
+					<p:inputText value="" id="in6" required="true"
+						requiredMessage="veuillez remplir le champ">
+						<f:ajax event="keyup" render="message6">
+						</f:ajax>
+						<f:validateRegex pattern="*@*.*"></f:validateRegex>
+					</p:inputText>
+					<p:message id="message6" for="in6" />
+				</p:panelGrid>
+				<p:commandButton value="Add" update="panelG1"></p:commandButton>
+			</h:form>
+		</p:panel>
+
+	</ui:define>
+</ui:composition>
